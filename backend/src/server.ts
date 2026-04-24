@@ -8,9 +8,12 @@ dotenv.config();
 async function main(): Promise<void> {
   const app = Fastify({ logger: true });
 
-  await app.register(cors, {
-    origin: process.env.FRONTEND_URL ?? "http://localhost:5173",
-  });
+  const allowedOrigin =
+    process.env.NODE_ENV === "production"
+      ? true
+      : (process.env.FRONTEND_URL ?? "http://localhost:5173");
+
+  await app.register(cors, { origin: allowedOrigin });
 
   await app.register(weatherRoutes, { prefix: "/api" });
 

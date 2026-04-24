@@ -3,8 +3,7 @@ import type { WeatherResponse, ApiError } from "@/types/weather";
 
 const api = axios.create({
   baseURL:
-    (import.meta.env.VITE_API_URL as string | undefined) ??
-    "http://localhost:3333/api",
+    (import.meta.env.VITE_API_URL as string | undefined) ?? "/_/backend/api",
 });
 
 export async function fetchWeather(city: string): Promise<WeatherResponse> {
