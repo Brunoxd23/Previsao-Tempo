@@ -46,10 +46,10 @@ export default function App() {
 
         <SearchForm onSearch={handleSearch} isLoading={isLoading} />
 
-        {weatherData && (
+        {weatherData?.current && (
           <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <CurrentWeather data={weatherData.current} />
-            <ForecastList forecast={weatherData.forecast} />
+            <ForecastList forecast={weatherData.forecast ?? []} />
           </div>
         )}
 
